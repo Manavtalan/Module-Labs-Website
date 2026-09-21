@@ -4,9 +4,7 @@ import {studio} from '../data';
 
 function SocialLink({name,url}:{name:string;url:string}){
   const content=<>{name}<ArrowUpRight size={14}/></>;
-  return url
-    ? <a className="footer-social-link" href={url} target="_blank" rel="noreferrer">{content}</a>
-    : <button className="footer-social-link is-unavailable" type="button" disabled aria-label={`${name} link is not configured`}>{content}</button>;
+  return <a className="footer-social-link" href={url} target="_blank" rel="noopener noreferrer" aria-label={`Visit Module Labs on ${name}`}>{content}</a>;
 }
 
 export default function Footer({onContact}:{onContact:()=>void}){

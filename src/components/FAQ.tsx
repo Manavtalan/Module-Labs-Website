@@ -8,12 +8,12 @@ const team=[
   {initial:'P',name:'Prakher',role:'Shopify & Ecommerce Specialist'},
 ];
 
-export default function FAQ({onContact}:{onContact:()=>void}){
+export default function FAQ({onContact:_onContact}:{onContact:()=>void}){
   const [active,setActive]=useState<number|null>(null);
   const contacts=[
-    {label:'Email',href:`mailto:${studio.email}`,icon:Mail},
+    {label:'Email',href:studio.emailUrl,icon:Mail},
     {label:'Instagram',href:studio.instagram,icon:Instagram},
-    {label:'WhatsApp',href:studio.whatsapp,icon:MessageCircle},
+    {label:'WhatsApp',href:studio.whatsappUrl,icon:MessageCircle},
   ];
   return <section id="faqs" className="section faq-section">
     <div className="faq-intro reveal">
@@ -24,7 +24,7 @@ export default function FAQ({onContact}:{onContact:()=>void}){
         <div className="faq-team">{team.map(member=><div className="faq-team-member" key={member.name}><span aria-hidden="true">{member.initial}</span><div><strong>{member.name}</strong><p>{member.role}</p></div></div>)}</div>
         <div className="faq-card-divider"/>
         <h3>Talk directly with us.</h3>
-        <div className="faq-contact-pills">{contacts.map(({label,href,icon:Icon})=>href?<a key={label} href={href} target={label==='Email'?undefined:'_blank'} rel={label==='Email'?undefined:'noreferrer'}><Icon size={15}/><span>{label}</span><ArrowUpRight size={14}/></a>:<button key={label} type="button" onClick={onContact} aria-label={`${label} — open contact options`}><Icon size={15}/><span>{label}</span><ArrowUpRight size={14}/></button>)}</div>
+        <div className="faq-contact-pills">{contacts.map(({label,href,icon:Icon})=><a key={label} href={href} target={label==='Email'?undefined:'_blank'} rel={label==='Email'?undefined:'noopener noreferrer'} aria-label={label==='Email'?'Email Module Labs':label==='Instagram'?'Visit Module Labs on Instagram':'Message Module Labs on WhatsApp'}><Icon size={15}/><span>{label}</span><ArrowUpRight size={14}/></a>)}</div>
       </aside>
     </div>
     <div className="faq-list">{faqs.map((faq,index)=>{const isOpen=active===index;return <article className={`faq-item ${isOpen?'open':''}`} key={faq.q}>

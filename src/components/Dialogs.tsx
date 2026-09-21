@@ -21,19 +21,16 @@ export function ProjectDialog({project,onClose,onContact}:{project:Project;onClo
 }
 
 export function ContactDialog({onClose,scope:_scope}:{onClose:()=>void;scope:string}){
-  const whatsappUrl=studio.whatsapp?`https://wa.me/${studio.whatsapp.replace(/\D/g,'')}`:'';
   const options=[
-    {label:'Instagram',href:studio.instagram,icon:<Instagram size={19}/>,external:true},
-    {label:'WhatsApp',href:whatsappUrl,icon:<MessageCircle size={19}/>,external:true},
-    {label:'Email',href:`mailto:${studio.email}`,icon:<Mail size={19}/>,external:false}
+    {label:'Instagram',href:studio.instagram,icon:<Instagram size={19}/>,external:true,ariaLabel:'Visit Module Labs on Instagram'},
+    {label:'WhatsApp',href:studio.whatsappUrl,icon:<MessageCircle size={19}/>,external:true,ariaLabel:'Message Module Labs on WhatsApp'},
+    {label:'Email',href:studio.emailUrl,icon:<Mail size={19}/>,external:false,ariaLabel:'Email Module Labs'}
   ];
   return <Dialog onClose={onClose} title="Start a project" className="contact-choice-dialog">
     <Label>START A PROJECT</Label>
     <h2>How would you like<br/>to reach us?</h2>
     <div className="contact-options">
-      {options.map(option=>option.href
-        ? <a key={option.label} className="contact-option" href={option.href} target={option.external?'_blank':undefined} rel={option.external?'noreferrer':undefined}><span className="contact-option-icon">{option.icon}</span><span>{option.label}</span><ArrowUpRight className="contact-option-arrow" size={18}/></a>
-        : <button key={option.label} className="contact-option is-unavailable" type="button" disabled aria-label={`${option.label} link is not configured`}><span className="contact-option-icon">{option.icon}</span><span>{option.label}</span><span className="contact-option-status mono">LINK NEEDED</span><ArrowUpRight className="contact-option-arrow" size={18}/></button>)}
+      {options.map(option=><a key={option.label} className="contact-option" href={option.href} target={option.external?'_blank':undefined} rel={option.external?'noopener noreferrer':undefined} aria-label={option.ariaLabel}><span className="contact-option-icon">{option.icon}</span><span>{option.label}</span><ArrowUpRight className="contact-option-arrow" size={18}/></a>)}
     </div>
   </Dialog>;
 }

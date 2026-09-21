@@ -1,4 +1,15 @@
-export const studio={email:'hello@modulelabs.design',whatsapp:'',instagram:'',linkedin:'',x:''};
+const email='manavtalan@gmail.com';
+const whatsappNumber='917983252422';
+
+export const studio={
+  email,
+  emailUrl:`mailto:${email}`,
+  whatsapp:'+91 7983252422',
+  whatsappUrl:`https://wa.me/${whatsappNumber}`,
+  instagram:'https://www.instagram.com/modulelabs?stkn=dmc5NzZjOTQ1cDR3&utm_source=qr',
+  linkedin:'',
+  x:'https://x.com/Modulelabsdotio'
+};
 export type Project={id:string;name:string;category:string;year:string;kind:string;size:string;description:string;deliverables:string[]};
 export const projects:Project[]=[
 {id:'modular',name:'Modular',category:'3D Website',year:'2026',kind:'modular',size:'large',description:'A study in digital form. An interactive exhibition concept that makes sculptural objects feel tangible through careful typography, space, and motion.',deliverables:['Art direction','Interactive design','3D / WebGL']},
