@@ -87,3 +87,31 @@
 @media(max-width:760px){.pricing-section{padding-top:72px;padding-bottom:72px}.pricing-section .pricing-intro{margin-bottom:32px}.pricing-intro h2{margin-top:18px}.pricing-intro>p{margin-top:18px;padding-inline:0}.pricing-intro>p br{display:none}.pricing-pill{font-size:7px;padding:8px 12px}.pricing-grid{grid-template-columns:1fr;gap:12px}.pricing-card{padding:24px;border-radius:21px}.pricing-card h3{font-size:28px;margin-top:21px;max-width:360px}.plan-meta{font-size:9px;margin-top:12px}.plan-desc{font-size:13px;margin-top:12px;max-width:430px}.plan-divider{margin:21px 0 18px}.included{font-size:8px}.pricing-card ul{margin-top:15px;gap:10px}.pricing-card li{font-size:12px}.plan-notes{margin-top:19px}.plan-cta{margin-top:20px}}
 @media(max-width:420px){.pricing-card{padding:22px}.pricing-card h3{font-size:26px}.plan-icon{width:42px;height:42px}.plan-meta{letter-spacing:0}.plan-notes{display:grid}.plan-notes>p{width:max-content;max-width:100%}}
 @media(prefers-reduced-motion:reduce){.pricing-pill::before{animation:none;transform:none}}
+
+/* Four-card services showcase. */
+.services-section{padding-top:clamp(72px,6vw,96px);padding-bottom:clamp(72px,6vw,96px)}
+.services-section .services-intro{max-width:760px;margin:0 auto 42px}
+.services-intro h2{margin-top:22px}
+.services-intro>p{max-width:650px;margin:20px auto 0}
+.service-showcase-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;max-width:1280px;margin-inline:auto}
+.service-showcase-card{display:flex;flex-direction:column;min-width:0;overflow:hidden;background:#f7efe4;border:1px solid #0a0a0a14;border-radius:26px;box-shadow:0 14px 45px #42250d08}
+.service-showcase-copy{display:flex;flex-direction:column;align-items:flex-start;padding:30px}
+.service-showcase-top{display:flex;align-items:center;justify-content:space-between;width:100%}
+.service-showcase-top>.mono{font-size:8px;color:#81786e;letter-spacing:.12em}
+.service-showcase-icon{width:44px;height:44px;display:grid;place-items:center;border:1px solid #0a0a0a15;border-radius:13px;background:#efe4d5;color:#9c3d08;box-shadow:inset 0 1px #fff8}
+.service-showcase-card:nth-child(2) .service-showcase-icon{background:var(--orange);color:var(--ink);border-color:transparent}
+.service-showcase-card h3{font-size:clamp(25px,2.25vw,35px);font-weight:520;line-height:1.08;letter-spacing:-.05em;margin-top:23px;max-width:470px}
+.service-showcase-copy>p{font-size:13px;color:var(--muted);line-height:1.7;margin-top:14px;max-width:520px}
+.service-showcase-tags{display:flex;flex-wrap:wrap;gap:7px 6px;margin-top:22px}
+.service-showcase-tags>span{padding:7px 9px;border:1px solid #0a0a0a13;border-radius:7px;background:#eee3d3;color:#665e55;font-size:9px;line-height:1.3}
+.service-showcase-tags>span:first-child{background:#ff610514;border-color:#ff61052c;color:#9c3d08}
+.service-showcase-media{height:clamp(300px,26vw,360px);margin:auto 0 0;border-top:1px solid #0a0a0a0e;background:#eee5d8;overflow:hidden}
+.service-showcase-media img{display:block;width:100%;height:100%;object-fit:contain;transition:transform .7s var(--ease)}
+.service-showcase-card:hover .service-showcase-media img{transform:scale(1.018)}
+.service-showcase-website .service-showcase-media{background:#f9f4ee}
+.service-showcase-ai .service-showcase-media{background:#fbf8f3}
+.service-showcase-branding .service-showcase-media{background:#e6dccf}
+.service-showcase-shopify .service-showcase-media{background:#fff}
+@media(max-width:1100px){.services-section{padding-top:80px;padding-bottom:80px}.service-showcase-grid{gap:14px}.service-showcase-copy{padding:26px}.service-showcase-card h3{font-size:clamp(24px,3vw,31px)}.service-showcase-copy>p{font-size:12px}.service-showcase-tags>span{font-size:8px}.service-showcase-media{height:290px}}
+@media(max-width:760px){.services-section{padding-top:72px;padding-bottom:72px}.services-section .services-intro{margin-bottom:32px}.services-intro h2{margin-top:18px}.services-intro>p{margin-top:18px;padding-inline:0}.services-pill{font-size:7px;padding:8px 12px}.service-showcase-grid{grid-template-columns:1fr;gap:12px}.service-showcase-card{border-radius:21px}.service-showcase-copy{padding:24px}.service-showcase-card h3{font-size:28px;margin-top:21px}.service-showcase-copy>p{font-size:13px;margin-top:12px}.service-showcase-tags{margin-top:19px}.service-showcase-tags>span{font-size:9px}.service-showcase-media{height:min(82vw,340px)}}
+@media(max-width:420px){.service-showcase-copy{padding:22px}.service-showcase-card h3{font-size:26px}.service-showcase-icon{width:42px;height:42px}.service-showcase-media{height:300px}}
