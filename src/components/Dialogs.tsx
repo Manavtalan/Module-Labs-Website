@@ -1,8 +1,39 @@
-import {useEffect,useRef,useState,type ReactNode} from 'react';
-import {X,ArrowUpRight,Mail,Copy,Check,MessageCircle} from 'lucide-react';
+import {useEffect,useRef,type ReactNode} from 'react';
+import {X,ArrowUpRight,Mail,MessageCircle,Instagram} from 'lucide-react';
 import {type Project,studio} from '../data';
 import {Label} from './Common';
 import ProjectVisual from './ProjectVisual';
-function Dialog({onClose,children,title,className=''}:{onClose:()=>void;children:ReactNode;title:string;className?:string}){const ref=useRef<HTMLDialogElement>(null);useEffect(()=>{const dialog=ref.current;const previous=document.activeElement as HTMLElement;dialog?.showModal();const old=document.body.style.overflow;document.body.style.overflow='hidden';return()=>{dialog?.close();document.body.style.overflow=old;previous?.focus()}},[]);return <dialog ref={ref} className={`dialog ${className}`} aria-label={title} onCancel={e=>{e.preventDefault();onClose()}} onClick={e=>{if(e.target===e.currentTarget){const r=e.currentTarget.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)onClose()}}}><button className="dialog-close icon-button" onClick={onClose} aria-label="Close dialog"><X size={19}/></button>{children}</dialog>}
-export function ProjectDialog({project,onClose,onContact}:{project:Project;onClose:()=>void;onContact:(scope?:string)=>void}){return <Dialog onClose={onClose} title={`${project.name} concept study`} className="project-dialog"><div className="dialog-project-media"><ProjectVisual kind={project.kind}/></div><div className="project-dialog-content"><Label>STUDIO CONCEPT / {project.year}</Label><h2>{project.name}</h2><p>{project.description}</p><div className="dialog-tags">{project.deliverables.map(d=><span key={d}>{d}</span>)}</div><div className="concept-disclosure">An original studio exploration. This is a demonstration project, not commissioned client work. Product imagery is generated for the concept.</div><button className="cta" onClick={()=>onContact(`A project inspired by ${project.name}`)}>Build something like this <ArrowUpRight size={17}/></button></div></Dialog>}
-export function ContactDialog({onClose,scope}:{onClose:()=>void;scope:string}){const [copied,setCopied]=useState(false);const [copyError,setCopyError]=useState(false);const [name,setName]=useState('');const [brief,setBrief]=useState('');const [interest,setInterest]=useState(scope||'Digital experiences');const [prepared,setPrepared]=useState(false);async function copy(){try{await navigator.clipboard.writeText(studio.email);setCopied(true);setCopyError(false)}catch{setCopyError(true)}}return <Dialog onClose={onClose} title="Start a project"><Label>GOOD THINGS START HERE.</Label><h2>What do you<br/><em>have in mind?</em></h2><p className="dialog-intro">A new idea, a fresh direction, or something you’re still figuring out. We’d love to hear it.</p><form onSubmit={e=>{e.preventDefault();const body=`Hi Module Labs,\n\nI'm ${name}. I'm interested in ${interest}.\n\n${brief}\n\nThanks,\n${name}`;window.location.href=`mailto:${studio.email}?subject=${encodeURIComponent(`Project enquiry — ${interest}`)}&body=${encodeURIComponent(body)}`;setPrepared(true)}}><label>Your name<input required autoComplete="name" value={name} onChange={e=>setName(e.target.value)} placeholder="What should we call you?"/></label><label>I’m interested in<select value={interest} onChange={e=>setInterest(e.target.value)}>{!['Digital experiences','Brand systems','Shopify + ecommerce','Something else'].includes(interest)&&<option>{interest}</option>}{['Digital experiences','Brand systems','Shopify + ecommerce','Something else'].map(s=><option key={s}>{s}</option>)}</select></label><label>A little about your project<textarea required value={brief} onChange={e=>setBrief(e.target.value)} rows={3} placeholder="What are you building? Any timeline or budget in mind?"/></label><button className="cta" type="submit">Prepare project email <ArrowUpRight size={16}/></button><p className="form-note" role="status">{prepared?'Your email draft is ready in your email app. Review it and send when you’re ready.':'Opens your email app with a draft. Nothing is sent automatically.'}</p></form><div className="contact-direct"><a href={`mailto:${studio.email}`}><Mail size={15}/>{studio.email}</a><button className="icon-button" onClick={copy} aria-label="Copy email address">{copied?<Check size={15}/>:<Copy size={15}/>}</button></div>{copyError&&<p className="form-note">You can select and copy the email address above.</p>}{studio.whatsapp?<a className="whatsapp-direct" href={`https://wa.me/${studio.whatsapp.replace(/\D/g,'')}`} target="_blank" rel="noreferrer"><MessageCircle size={16}/> Chat on WhatsApp <ArrowUpRight size={15}/></a>:<p className="form-note">Email is the best way to reach us right now.</p>}</Dialog>}
+
+function Dialog({onClose,children,title,className=''}:{onClose:()=>void;children:ReactNode;title:string;className?:string}){
+  const ref=useRef<HTMLDialogElement>(null);
+  useEffect(()=>{const dialog=ref.current;const previous=document.activeElement as HTMLElement;dialog?.showModal();const old=document.body.style.overflow;document.body.style.overflow='hidden';return()=>{dialog?.close();document.body.style.overflow=old;previous?.focus()}},[]);
+  return <dialog ref={ref} className={`dialog ${className}`} aria-label={title} onCancel={e=>{e.preventDefault();onClose()}} onClick={e=>{if(e.target===e.currentTarget){const r=e.currentTarget.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)onClose()}}}>
+    <button className="dialog-close icon-button" onClick={onClose} aria-label="Close dialog"><X size={19}/></button>
+    {children}
+  </dialog>;
+}
+
+export function ProjectDialog({project,onClose,onContact}:{project:Project;onClose:()=>void;onContact:(scope?:string)=>void}){
+  return <Dialog onClose={onClose} title={`${project.name} concept study`} className="project-dialog">
+    <div className="dialog-project-media"><ProjectVisual kind={project.kind}/></div>
+    <div className="project-dialog-content"><Label>STUDIO CONCEPT / {project.year}</Label><h2>{project.name}</h2><p>{project.description}</p><div className="dialog-tags">{project.deliverables.map(d=><span key={d}>{d}</span>)}</div><div className="concept-disclosure">An original studio exploration. This is a demonstration project, not commissioned client work. Product imagery is generated for the concept.</div><button className="cta" onClick={()=>onContact(`A project inspired by ${project.name}`)}>Build something like this <ArrowUpRight size={17}/></button></div>
+  </Dialog>;
+}
+
+export function ContactDialog({onClose,scope:_scope}:{onClose:()=>void;scope:string}){
+  const whatsappUrl=studio.whatsapp?`https://wa.me/${studio.whatsapp.replace(/\D/g,'')}`:'';
+  const options=[
+    {label:'Instagram',href:studio.instagram,icon:<Instagram size={19}/>,external:true},
+    {label:'WhatsApp',href:whatsappUrl,icon:<MessageCircle size={19}/>,external:true},
+    {label:'Email',href:`mailto:${studio.email}`,icon:<Mail size={19}/>,external:false}
+  ];
+  return <Dialog onClose={onClose} title="Start a project" className="contact-choice-dialog">
+    <Label>START A PROJECT</Label>
+    <h2>How would you like<br/>to reach us?</h2>
+    <div className="contact-options">
+      {options.map(option=>option.href
+        ? <a key={option.label} className="contact-option" href={option.href} target={option.external?'_blank':undefined} rel={option.external?'noreferrer':undefined}><span className="contact-option-icon">{option.icon}</span><span>{option.label}</span><ArrowUpRight className="contact-option-arrow" size={18}/></a>
+        : <button key={option.label} className="contact-option is-unavailable" type="button" disabled aria-label={`${option.label} link is not configured`}><span className="contact-option-icon">{option.icon}</span><span>{option.label}</span><span className="contact-option-status mono">LINK NEEDED</span><ArrowUpRight className="contact-option-arrow" size={18}/></button>)}
+    </div>
+  </Dialog>;
+}

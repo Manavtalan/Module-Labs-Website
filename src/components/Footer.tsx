@@ -1,4 +1,24 @@
-import {ArrowUpRight,ArrowUp} from 'lucide-react';
-import {Mark} from './Common';
+import {ArrowUpRight} from 'lucide-react';
+import {CTA} from './Common';
 import {studio} from '../data';
-export default function Footer({onContact}:{onContact:()=>void}){return <footer className="footer"><div className="footer-top"><p>Independent in spirit.<br/><em>Connected by craft.</em></p><a className="back-top mono" href="#">Back to top <ArrowUp size={14}/></a></div><div className="footer-grid"><div><span className="mono">INDEX</span>{['Work','Services','Pricing','FAQs'].map(l=><a key={l} href={`#${l.toLowerCase()}`}>{l}</a>)}</div><div><span className="mono">STUDIO</span><p>Manav · Design + development</p><p>Nikita · Brand + art direction</p><p>Independent. Working worldwide.</p></div><div><span className="mono">ELSEWHERE</span>{[['Instagram',studio.instagram],['LinkedIn',studio.linkedin],['X',studio.x]].map(([name,url])=>url?<a key={name} href={url} target="_blank" rel="noreferrer">{name}<ArrowUpRight size={12}/></a>:<span key={name} className="social-pending">{name}<span>SOON</span></span>)}</div><div><span className="mono">START A CONVERSATION</span><a href={`mailto:${studio.email}`}>{studio.email}<ArrowUpRight size={13}/></a><button onClick={onContact}>Let’s talk about your project <ArrowUpRight size={13}/></button><p className="footer-availability"><span className="status-dot"/> Available for select projects</p></div></div><div className="footer-wordmark" aria-label="Module Labs"><Mark/><span>MODULE LABS<span className="orange">↗</span></span></div><div className="footer-bottom mono"><span>© {new Date().getFullYear()} MODULE LABS</span><span>THOUGHTFULLY DESIGNED. CAREFULLY BUILT.</span><span>DESIGN + TECHNOLOGY</span></div></footer>}
+
+function SocialLink({name,url}:{name:string;url:string}){
+  const content=<>{name}<ArrowUpRight size={14}/></>;
+  return url
+    ? <a className="footer-social-link" href={url} target="_blank" rel="noreferrer">{content}</a>
+    : <button className="footer-social-link is-unavailable" type="button" disabled aria-label={`${name} link is not configured`}>{content}</button>;
+}
+
+export default function Footer({onContact}:{onContact:()=>void}){
+  return <footer className="footer minimal-footer">
+    <div className="footer-closing reveal">
+      <p className="footer-tagline mono"><span className="status-dot"/>Design × Engineering Studio</p>
+      <CTA className="footer-cta" onClick={onContact}>Start a Project</CTA>
+      <nav className="footer-socials" aria-label="Social links">
+        <SocialLink name="Instagram" url={studio.instagram}/>
+        <SocialLink name="X" url={studio.x}/>
+      </nav>
+    </div>
+    <div className="footer-wordmark-minimal reveal" aria-label="Module Labs">MODULE LABS</div>
+  </footer>;
+}
