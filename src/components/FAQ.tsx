@@ -1,5 +1,35 @@
 import {useState} from 'react';
-import {Plus,Mail,MessageCircle,ArrowUpRight} from 'lucide-react';
-import {Label} from './Common';
-import {faqs} from '../data';
-export default function FAQ({onContact}:{onContact:()=>void}){const [active,setActive]=useState<number|null>(null);return <section id="faqs" className="section faq-section"><div className="faq-intro reveal"><Label>FAQs</Label><h2>Still thinking<br/>it through?<br/><em>Let’s make it simple.</em></h2><div className="contact-card"><div className="contact-people"><span>M</span><span>N</span><p>Manav & Nikita<br/><small>The people behind the pixels.</small></p></div><h3>Couldn’t find your answer?<br/>Talk directly with us.</h3><button onClick={onContact}><Mail size={17}/> Email us <ArrowUpRight size={15}/></button><button onClick={onContact}><MessageCircle size={17}/> WhatsApp <ArrowUpRight size={15}/></button></div></div><div className="faq-list">{faqs.map((f,i)=><article className={`faq-item ${active===i?'open':''}`} key={f.q}><h3><button onClick={()=>setActive(active===i?null:i)} aria-expanded={active===i} aria-controls={`faq-answer-${i}`} id={`faq-question-${i}`}><span className="faq-number mono">0{i+1}</span><span>{f.q}</span><Plus size={19}/></button></h3><div id={`faq-answer-${i}`} role="region" aria-labelledby={`faq-question-${i}`} className="faq-answer" hidden={active!==i}><p>{f.a}</p></div></article>)}</div></section>}
+import {ArrowUpRight,Instagram,Mail,MessageCircle} from 'lucide-react';
+import {faqs,studio} from '../data';
+
+const team=[
+  {initial:'M',name:'Manav',role:'Engineering × Web Design'},
+  {initial:'N',name:'Nikita',role:'Branding Manager'},
+  {initial:'P',name:'Prakher',role:'Shopify & Ecommerce Specialist'},
+];
+
+export default function FAQ({onContact}:{onContact:()=>void}){
+  const [active,setActive]=useState<number|null>(null);
+  const contacts=[
+    {label:'Email',href:`mailto:${studio.email}`,icon:Mail},
+    {label:'Instagram',href:studio.instagram,icon:Instagram},
+    {label:'WhatsApp',href:studio.whatsapp,icon:MessageCircle},
+  ];
+  return <section id="faqs" className="section faq-section">
+    <div className="faq-intro reveal">
+      <span className="pricing-pill faq-pill mono"><i aria-hidden="true"/>FAQs<i aria-hidden="true"/></span>
+      <h2>Still thinking it through?<br/><em>Let’s make it simple.</em></h2>
+      <aside className="faq-contact-card" aria-label="Module Labs team and contact options">
+        <span className="faq-card-label mono">TEAM</span>
+        <div className="faq-team">{team.map(member=><div className="faq-team-member" key={member.name}><span aria-hidden="true">{member.initial}</span><div><strong>{member.name}</strong><p>{member.role}</p></div></div>)}</div>
+        <div className="faq-card-divider"/>
+        <h3>Talk directly with us.</h3>
+        <div className="faq-contact-pills">{contacts.map(({label,href,icon:Icon})=>href?<a key={label} href={href} target={label==='Email'?undefined:'_blank'} rel={label==='Email'?undefined:'noreferrer'}><Icon size={15}/><span>{label}</span><ArrowUpRight size={14}/></a>:<button key={label} type="button" onClick={onContact} aria-label={`${label} — open contact options`}><Icon size={15}/><span>{label}</span><ArrowUpRight size={14}/></button>)}</div>
+      </aside>
+    </div>
+    <div className="faq-list">{faqs.map((faq,index)=>{const isOpen=active===index;return <article className={`faq-item ${isOpen?'open':''}`} key={faq.q}>
+      <h3><button onClick={()=>setActive(isOpen?null:index)} aria-expanded={isOpen} aria-controls={`faq-answer-${index}`} id={`faq-question-${index}`}><span className="faq-number mono">{String(index+1).padStart(2,'0')}</span><span>{faq.q}</span><span className="faq-toggle" aria-hidden="true"/></button></h3>
+      <div id={`faq-answer-${index}`} role="region" aria-labelledby={`faq-question-${index}`} aria-hidden={!isOpen} className="faq-answer"><div><p>{faq.a}</p></div></div>
+    </article>})}</div>
+  </section>;
+}
