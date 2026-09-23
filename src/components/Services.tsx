@@ -9,10 +9,10 @@ const serviceCards:ServiceCard[]=[
   {title:'Shopify Ecommerce Build & Setup',description:'Complete Shopify store design, setup, customization, integrations, and launch for ecommerce brands built to convert and scale.',tags:['$3,000–$5,000','2–3 Weeks','Custom + Shopify App Integrations','Premium Themes','Built to Convert'],image:'/assets/service-shopify.jpeg',alt:'Green ecommerce storefront graphic with shopping basket, products, payment card, and discount tag',icon:ShoppingBag,kind:'shopify'},
 ];
 
-export default function Services(){return <section id="services" className="section services-section">
+export default function Services(){return <section id="services" className="section services-section" aria-labelledby="services-title">
   <div className="center-heading services-intro reveal">
     <span className="pricing-pill services-pill mono"><i aria-hidden="true"/>SERVICES<i aria-hidden="true"/></span>
-    <h2>What we Can Do<br/><em>For Your Brand</em></h2>
+    <h2 id="services-title">What we Can Do<br/><em>For Your Brand</em></h2>
     <p>Thoughtful design, development, branding, and ecommerce systems built to help brands launch, grow, and stay consistent.</p>
   </div>
   <div className="service-showcase-grid">

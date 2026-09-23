@@ -15,10 +15,10 @@ export default function FAQ({onContact:_onContact}:{onContact:()=>void}){
     {label:'Instagram',href:studio.instagram,icon:Instagram},
     {label:'WhatsApp',href:studio.whatsappUrl,icon:MessageCircle},
   ];
-  return <section id="faqs" className="section faq-section">
+  return <section id="faqs" className="section faq-section" aria-labelledby="faqs-title">
     <div className="faq-intro reveal">
       <span className="pricing-pill faq-pill mono"><i aria-hidden="true"/>FAQs<i aria-hidden="true"/></span>
-      <h2>Still thinking it through?<br/><em>Let’s make it simple.</em></h2>
+      <h2 id="faqs-title">Still thinking it through?<br/><em>Let’s make it simple.</em></h2>
       <aside className="faq-contact-card" aria-label="Module Labs team and contact options">
         <span className="faq-card-label mono">TEAM</span>
         <div className="faq-team">{team.map(member=><div className="faq-team-member" key={member.name}><span aria-hidden="true">{member.initial}</span><div><strong>{member.name}</strong><p>{member.role}</p></div></div>)}</div>

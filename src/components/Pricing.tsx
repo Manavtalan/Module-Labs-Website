@@ -12,10 +12,10 @@ const cards:PricingCard[]=[
 
 export default function Pricing({onContact}:{onContact:(scope?:string)=>void}){
   const reduced=useReducedMotion();
-  return <section id="pricing" className="section pricing-section">
+  return <section id="pricing" className="section pricing-section" aria-labelledby="pricing-title">
     <div className="center-heading pricing-intro reveal">
       <span className="pricing-pill mono"><i aria-hidden="true"/>PRICING<i aria-hidden="true"/></span>
-      <h2>Clear scopes.<br/><em>No mystery invoices.</em></h2>
+      <h2 id="pricing-title">Clear scopes.<br/><em>No mystery invoices.</em></h2>
       <p>Choose the service that best fits your business, timeline, and stage.<br/> Each offer is structured clearly so clients understand what’s included before we begin.</p>
     </div>
     <motion.div className="pricing-grid" initial={reduced?false:'hidden'} whileInView="visible" viewport={{once:true,amount:.08}} variants={{hidden:{},visible:{transition:{staggerChildren:.08}}}}>

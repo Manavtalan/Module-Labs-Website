@@ -10,12 +10,12 @@ export const studio={
   linkedin:'',
   x:'https://x.com/Modulelabsdotio'
 };
-export type Project={id:string;name:string;video:string;url:string;tags:string[];ariaLabel:string};
+export type Project={id:string;name:string;video:string;url:string;tags:string[];linkLabel:string;videoLabel:string};
 export const projects:Project[]=[
-{id:'charter',name:'Charter AI',video:'/work/charter.mp4',url:'https://www.trycharter.io/',tags:['AI SaaS','Web App','Landing Page'],ariaLabel:'Charter AI portfolio project by Module Labs'},
-{id:'ora',name:'ORA Indie',video:'/work/ora.mp4',url:'https://oraindie.com/',tags:['Ecommerce','Fashion','D2C'],ariaLabel:'ORA Indie ecommerce project by Module Labs'},
-{id:'lumen',name:'Lumen',video:'/work/lumen.mp4',url:'https://lumenlabs-1.vercel.app/',tags:['SaaS','Motion','Landing Page'],ariaLabel:'Lumen SaaS landing page project by Module Labs'},
-{id:'nomad',name:'Nomad',video:'/work/nomad.mp4',url:'https://nomadp.netlify.app/',tags:['Consumer App','Travel','Web App'],ariaLabel:'Nomad travel web app project by Module Labs'}
+{id:'charter',name:'Charter AI',video:'/work/charter.mp4',url:'https://www.trycharter.io/',tags:['AI SaaS','Web App','Landing Page'],linkLabel:'View Charter AI website',videoLabel:'Charter AI project management platform website by Module Labs'},
+{id:'ora',name:'ORA Indie',video:'/work/ora.mp4',url:'https://oraindie.com/',tags:['Ecommerce','Fashion','D2C'],linkLabel:'View ORA Indie ecommerce website',videoLabel:'ORA Indie fashion ecommerce website by Module Labs'},
+{id:'lumen',name:'Lumen',video:'/work/lumen.mp4',url:'https://lumenlabs-1.vercel.app/',tags:['SaaS','Motion','Landing Page'],linkLabel:'View Lumen SaaS landing page',videoLabel:'Lumen animated SaaS landing page by Module Labs'},
+{id:'nomad',name:'Nomad',video:'/work/nomad.mp4',url:'https://nomadp.netlify.app/',tags:['Consumer App','Travel','Web App'],linkLabel:'View Nomad travel web app',videoLabel:'Nomad travel web app interface by Module Labs'}
 ];
 export const services=[
 {number:'01',title:'Digital Experiences',lead:'Led by Manav',description:'Design and development for brands that need more than a static website.',kind:'digital',items:['3D Animated Websites','Landing Pages','Full Website Development','AI SaaS Web Apps','Motion Design for Web','Interactive Product Experiences','Frontend Development','Web Animation','Responsive Development','Performance Optimization']},
