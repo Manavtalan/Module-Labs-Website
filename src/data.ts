@@ -10,16 +10,12 @@ export const studio={
   linkedin:'',
   x:'https://x.com/Modulelabsdotio'
 };
-export type Project={id:string;name:string;category:string;year:string;kind:string;size:string;description:string;deliverables:string[]};
+export type Project={id:string;name:string;video:string;url:string;tags:string[];ariaLabel:string};
 export const projects:Project[]=[
-{id:'modular',name:'Modular',category:'3D Website',year:'2026',kind:'modular',size:'large',description:'A study in digital form. An interactive exhibition concept that makes sculptural objects feel tangible through careful typography, space, and motion.',deliverables:['Art direction','Interactive design','3D / WebGL']},
-{id:'forme',name:'Forme',category:'Brand Identity',year:'2026',kind:'forme',size:'medium',description:'A considered identity for a fictional skincare label. A quiet visual language that connects the wordmark, packaging, and everyday brand touchpoints.',deliverables:['Brand identity','Visual language','Art direction']},
-{id:'signal',name:'Signal',category:'AI Web App',year:'2026',kind:'signal',size:'tall',description:'An AI workspace concept that brings research, ideas, and next steps together. Designed around clear information hierarchy and a calmer way to work.',deliverables:['Product strategy','UI / UX','Design system']},
-{id:'objects',name:'Objects of sound',category:'Shopify Ecommerce',year:'2026',kind:'commerce',size:'wide',description:'A storefront concept for considered audio products. Rich product presentation, simple choices, and a direct route from discovery to cart.',deliverables:['Shopify design','Product experience','Commerce development']},
-{id:'margin',name:'Margin',category:'Full Website',year:'2026',kind:'margin',size:'medium',description:'An editorial website concept for an independent architecture practice. A typographic system built to give projects and perspectives their own room.',deliverables:['Editorial direction','Website design','Frontend development']},
-{id:'forme-pack',name:'The everyday ritual',category:'Packaging',year:'2026',kind:'packaging',size:'medium',description:'A tactile extension of the Forme concept. Packaging, labels, and a consistent product family designed to feel equally considered on a shelf or a screen.',deliverables:['Packaging system','Product mockups','Print applications']},
-{id:'flow',name:'Flow state',category:'Motion Website',year:'2026',kind:'motion',size:'wide',description:'A typographic motion study about rhythm and momentum. Large expressive type pairs with a deliberately restrained animation system.',deliverables:['Motion direction','Typography','Web animation']},
-{id:'index',name:'Index',category:'SaaS Landing Page',year:'2026',kind:'index',size:'medium',description:'A focused launch page concept for a team knowledge tool. Clear product storytelling, useful detail, and a confident, uncomplicated visual system.',deliverables:['Landing page','Product storytelling','Responsive development']}
+{id:'charter',name:'Charter AI',video:'/work/charter.mp4',url:'https://www.trycharter.io/',tags:['AI SaaS','Web App','Landing Page'],ariaLabel:'Charter AI portfolio project by Module Labs'},
+{id:'ora',name:'ORA Indie',video:'/work/ora.mp4',url:'https://oraindie.com/',tags:['Ecommerce','Fashion','D2C'],ariaLabel:'ORA Indie ecommerce project by Module Labs'},
+{id:'lumen',name:'Lumen',video:'/work/lumen.mp4',url:'https://lumenlabs-1.vercel.app/',tags:['SaaS','Motion','Landing Page'],ariaLabel:'Lumen SaaS landing page project by Module Labs'},
+{id:'nomad',name:'Nomad',video:'/work/nomad.mp4',url:'https://nomadp.netlify.app/',tags:['Consumer App','Travel','Web App'],ariaLabel:'Nomad travel web app project by Module Labs'}
 ];
 export const services=[
 {number:'01',title:'Digital Experiences',lead:'Led by Manav',description:'Design and development for brands that need more than a static website.',kind:'digital',items:['3D Animated Websites','Landing Pages','Full Website Development','AI SaaS Web Apps','Motion Design for Web','Interactive Product Experiences','Frontend Development','Web Animation','Responsive Development','Performance Optimization']},
